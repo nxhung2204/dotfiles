@@ -5,7 +5,6 @@ description: Commit, tạo PR, update status, notify Slack.
 
 - Commit (chỉ add files đã thay đổi)
     - Dùng commit skill
-- Push branch
 
 - Update status trong spec file thành "PR: Draft"
 Sửa dòng status:
@@ -19,6 +18,9 @@ Thành:
 ## **Status:**
 - PR: Draft
 ```
+
+- Commit (chỉ add files đã thay đổi)
+    - Dùng commit skill
 
 - Tạo Draft PR với github mcp
     - Title: [title]
