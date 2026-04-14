@@ -27,3 +27,6 @@ plugins/*.tmp
 
 plans/
 tasks/
+
+.claude/settings_z.json
+.claude/ide/

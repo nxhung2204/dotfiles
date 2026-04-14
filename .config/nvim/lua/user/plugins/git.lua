@@ -122,12 +122,15 @@ return {
 		dir = "~/Dev/personal/commit.nvim",
 		config = function()
 			require("commit").setup({
-				provider = "anthropic", -- "openai" | "anthropic" | "gemini"
-				neogit = {
-					enabled = true,
-					keybind = "<leader>ai",
-					auto_fill = false,
-				},
+				-- provider = "anthropic", -- "openai" | "anthropic" | "gemini"
+				-- neogit = {
+				-- 	enabled = true,
+				-- 	keybind = "<leader>ai",
+				-- 	auto_fill = false,
+				-- },
+				provider = "ollama",
+				model = "gemma2:2b", -- or qwen, mistral, etc.
+				base_url = "http://203.171.31.46:11434",
 			})
 		end,
 	},
