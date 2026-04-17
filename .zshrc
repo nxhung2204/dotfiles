@@ -99,6 +99,8 @@ export PATH="/usr/local/opt/postgresql@16/bin:$PATH"
 
 export PATH="/Users/rightsvn-hung/llama.cpp/build/bin:$PATH"
 
+export DATABASE_PASSWORD="12345678"
+
 # Disable GSS encryption mode
 export PGGSSENCMODE=disable
 export PATH="$HOME/.local/bin:$PATH"
