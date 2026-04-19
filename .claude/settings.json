@@ -49,6 +49,5 @@
     }
   },
   "effortLevel": "medium",
-  "autoMemoryEnabled": false,
-  "model": "opus"
+  "autoMemoryEnabled": false
 }

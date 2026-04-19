@@ -60,7 +60,7 @@ return {
 		end,
 	},
 	{
-		"esmuellert/vscode-diff.nvim",
+		"esmuellert/codediff.nvim",
 		dependencies = { "MunifTanjim/nui.nvim" },
 		config = function()
 			require("vscode-diff").setup({
@@ -105,11 +105,12 @@ return {
 			})
 		end,
 		keys = {
-			{ "<leader>gd", "<cmd>CodeDiff<cr>", desc = "Code diff" },
+			{ "<leader>gd", "<cmd>CodeDiff<cr>", desc = "Files changed" },
+			{ "<leader>gh", "<cmd>CodeDiff history<cr>", desc = "Commit history" },
 		},
 	},
 	{
-		"nxhung2304/conflict.nvim",
+		dir = "~/Dev/personal/conflict.nvim",
 		config = function()
 			require("conflict").setup({
 				ui = {
@@ -122,12 +123,6 @@ return {
 		dir = "~/Dev/personal/commit.nvim",
 		config = function()
 			require("commit").setup({
-				-- provider = "anthropic", -- "openai" | "anthropic" | "gemini"
-				-- neogit = {
-				-- 	enabled = true,
-				-- 	keybind = "<leader>ai",
-				-- 	auto_fill = false,
-				-- },
 				provider = "ollama",
 				model = "gemma2:2b", -- or qwen, mistral, etc.
 				base_url = "http://203.171.31.46:11434",

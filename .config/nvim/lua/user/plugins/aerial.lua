@@ -2,10 +2,6 @@ local Configs = require("user.core.configs")
 
 return {
 	"stevearc/aerial.nvim",
-	-- event = {
-	-- 	"BufReadPre",
-	-- 	"LspAttach",
-	-- },
 	opts = {
 		layout = {
 			max_width = { 40, 0.25 },
