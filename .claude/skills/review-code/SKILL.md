@@ -1,4 +1,5 @@
 ---
+name: review-code
 allowed-tools: Read, Grep, Glob, Write, Bash(ls:*), Bash(git:*)
 description: Review code against project rules. Use when user asks "review code, review-code issue #11"
 ---
@@ -9,10 +10,13 @@ description: Review code against project rules. Use when user asks "review code,
 
 **Steps:**
 1. Extract issue number, find branch, read spec for context
-2. Gọi rule-lookup subagent:
+2. Gọi rule-lookup subagent (nếu có):
+   - Kiểm tra `specs/rules/` và `code-rules/` có tồn tại không
+   - Nếu có → load relevant rules từ đó
+   - Nếu không có → bỏ qua, review theo general best practices
    ```
    Task: Review issue #[N], Language: [lang], Scope: [scope]
-   Return: Relevant rules from core.md, code-rules/, specs/rules/
+   Return: Relevant rules from core.md (if exists), code-rules/ (if exists), specs/rules/ (if exists)
    Format: Short bullets
    ```
 3. Scan code: `git diff develop...feature/...`

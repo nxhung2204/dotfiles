@@ -1,4 +1,5 @@
 ---
+name: commit
 allowed-tools: Bash(git:*), Bash(cat:*), Read, Write, Bash(git commit:*)
 description: Create professional git commits with bullet-point messages and Co-Authored-By footer
 ---

@@ -1,4 +1,5 @@
 ---
+name: review-specs
 allowed-tools: Read, Grep, Glob, Write
 description: Review specification for completeness and clarity. Use when user asks "review spec 1, review-specs #11..."
 ---
@@ -11,7 +12,7 @@ description: Review specification for completeness and clarity. Use when user as
 3. Analyze:
    - Acceptance Criteria (clear? measurable? complete?)
    - Implementation Checklist (specific? cover all?)
-   - Design Reference (available? tokens specified?)
+   - Design Reference (nếu `specs/rules/` tồn tại → kiểm tra tokens; nếu không → bỏ qua)
    - Dependencies (blocking/blocked?)
    - Edge cases (error? empty? loading? offline?)
 4. Create review file:

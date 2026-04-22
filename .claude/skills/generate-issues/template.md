@@ -10,39 +10,36 @@
 ---
 
 ## Description
-[Mô tả ngắn gọn story này làm gì, mục đích là gì]
-[Xuống dòng cho mỗi ý]
-Example:
-- Step 1
-- Step 2
-
----
-
-## Design
-- File: `specs/designs/[file].html`
-- Màn hình: [tên màn hình cụ thể trong file HTML]
-- Example:
-    - Timesheet screen
-    - Design: specs/designs/timesheet/list.html
+[Short description of what this task does and why]
 
 ---
 
 ## Acceptance Criteria
-- [ ] [Tiêu chí cụ thể, có thể test được]
+- [ ] [Specific, testable criterion]
 - [ ] [...]
 
 ---
 
 ## Implementation Checklist
-- [ ] Tạo file structure
-- [ ] Implement UI theo wireframe trong `specs/designs/`
-- [ ] Extract widget nếu > 50 lines
-- [ ] Thêm const constructors
-- [ ] Thêm TODO comment cho data placeholder
-- [ ] flutter analyze — 0 warnings
-- [ ] Viết widget test cơ bản
+- [ ] [Task-specific step]
+- [ ] [...]
+
+---
+
+## Step-by-step Guide
+
+**Files to create/modify:**
+- `src/...` — [what it does]
+
+**Key decisions:**
+- [Non-obvious constraint or architectural choice]
+
+**Non-obvious snippets** *(only if needed)*:
+```ts
+// short example of the tricky part only
+```
 
 ---
 
 ## Notes
-[Ghi chú thêm, edge cases, dependencies với story khác]
+[Edge cases, dependencies on other tasks, gotchas — keep to 2-3 bullet points max]

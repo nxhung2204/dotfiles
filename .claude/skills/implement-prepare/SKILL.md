@@ -18,20 +18,15 @@ Các bước:
 - Extract: issue number from "GitHub Issue: #XX" line (NOT from filename prefix!)
 - Extract: title from "Title:" field
 - Check: "Review: Approved" - if not approved, stop and notify
+- IMPORTANT: Use GitHub Issue number (e.g., #26 → 26), NOT spec filename prefix (000)
 
 3. Tạo branch
 - feature/hung-#[ACTUAL-GITHUB-ISSUE-NUMBER]-[slug-title-from-metadata]
 - slug phải là tiếng anh
-- IMPORTANT: Use GitHub Issue number (e.g., #26 → 26), NOT spec filename prefix (000)
 
+4. Notify Slack bắt đầu (tuỳ chọn — chỉ thực hiện nếu `slack-channel-id` có trong CLAUDE.md)
+- Nếu không có → bỏ qua, thread_ts = null
+- Nếu có → dùng mcp__slack__slack_post_message, lưu thread_ts
 
-- Notify Slack bắt đầu (mcp__slack__slack_post_message), lưu thread_ts
-```
-Use mcp__slack__slack_post_message:
-
-channel: [slack-channel-id from CLAUDE.md]
-text: "🚀 Bắt đầu implement Issue #[N]: [title]\nBranch: feature/hung-#[N]-[slug]"
-Save the returned ts value for threading later If MCP fails → fallback to slack CLI
-```
-
-- Trả summary: branch name + spec title + status
+**IMPORTANT:** KHÔNG report summary cho user - chỉ return kết quả để orchestrator tiếp tục step tiếp theo.
+Return: { branch_name, issue_number, title, thread_ts }

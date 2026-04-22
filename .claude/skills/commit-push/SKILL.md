@@ -1,4 +1,5 @@
 ---
+name: commit-push
 allowed-tools: Bash(git:*), Skill
 description: Commit staged changes and push to remote
 ---
