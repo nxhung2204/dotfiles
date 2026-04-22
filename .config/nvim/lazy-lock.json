@@ -17,6 +17,7 @@
   "emmet-vim": { "branch": "master", "commit": "92ef2f74f4093edc99db5e9e4cf7e40116a85bd6" },
   "flutter-tools.nvim": { "branch": "main", "commit": "677cc07c16e8b89999108d2ebeefcfc5f539b73c" },
   "friendly-snippets": { "branch": "main", "commit": "6cd7280adead7f586db6fccbd15d2cac7e2188b9" },
+  "github-theme": { "branch": "main", "commit": "c106c9472154d6b2c74b74565616b877ae8ed31d" },
   "gitsigns.nvim": { "branch": "main", "commit": "8d82c240f190fc33723d48c308ccc1ed8baad69d" },
   "grug-far.nvim": { "branch": "main", "commit": "37d0eafc6a2dcf8641aa19fc2a8db5e391b7f16b" },
   "image.nvim": { "branch": "master", "commit": "da2be65c153ba15a14a342b05591652a6df70d58" },

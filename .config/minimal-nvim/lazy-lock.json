@@ -1,7 +1,7 @@
 {
   "gruvbox": { "branch": "master", "commit": "697c00291db857ca0af00ec154e5bd514a79191f" },
   "lazy.nvim": { "branch": "main", "commit": "6c3bda4aca61a13a9c63f1c1d1b16b9d3be90d7a" },
-  "nvim-web-devicons": { "branch": "master", "commit": "8dcb311b0c92d460fac00eac706abd43d94d68af" },
+  "mini.icons": { "branch": "main", "commit": "bac6317300e205335df425296570d84322730067" },
   "snacks.nvim": { "branch": "main", "commit": "fe7cfe9800a182274d0f868a74b7263b8c0c020b" },
   "which-key.nvim": { "branch": "main", "commit": "b4177e3eaf15fe5eb8357ebac2286d488be1ed00" }
 }
