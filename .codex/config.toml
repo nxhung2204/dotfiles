@@ -1,0 +1,21 @@
+personality = "pragmatic"
+model = "gpt-5.4"
+model_reasoning_effort = "medium"
+[mcp_servers.pencil]
+command = "/Users/rightsvn-hung/.vscode/extensions/highagency.pencildev-0.6.36/out/mcp-server-darwin-x64"
+args = [ "--app", "visual_studio_code" ]
+
+[projects."/Users/rightsvn-hung/Dev/rights/rights_vn_office_management_mobile"]
+trust_level = "trusted"
+
+[projects."/Users/rightsvn-hung/Dev/personal/restman.nvim"]
+trust_level = "trusted"
+
+[projects."/Users/rightsvn-hung/dotfiles"]
+trust_level = "trusted"
+
+[projects."/Users/rightsvn-hung/Dev/personal/rails-tools.nvim"]
+trust_level = "trusted"
+
+[notice.model_migrations]
+"gpt-5.3-codex" = "gpt-5.4"
