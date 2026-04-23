@@ -1,0 +1,13 @@
+# Sensitive credentials
+oauth_creds.json
+google_accounts.json
+
+# Machine-specific
+installation_id
+trustedFolders.json
+
+# Runtime / temporary data
+history/
+tmp/
+state.json
+projects.json
