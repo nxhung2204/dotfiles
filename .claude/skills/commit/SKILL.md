@@ -27,5 +27,5 @@ type: subject (<70 chars, imperative)
 - Subject < 70 chars, imperative mood
 - Bullets use `-`, no markdown
 - WHAT & WHY, not HOW
-- Always include Co-Authored-By footer
+- Always include Co-Authored-By footer showing the current AI model (e.g. `Co-Authored-By: AI <noreply@anthropic.com>`)
 - **ALWAYS commit directly, no confirmation prompt**
