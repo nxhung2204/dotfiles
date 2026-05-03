@@ -1,3 +1,15 @@
+# Skip security checks for completions to speed up startup
+ZSH_DISABLE_COMPFIX="true"
+
+# Faster compinit caching
+autoload -Uz compinit
+_comp_path="${ZDOTDIR:-$HOME}/.zcompdump-${HOST%%.*}-${ZSH_VERSION}"
+if [[ -f "$_comp_path" && "$_comp_path" -nt "$HOME/.zshrc" ]]; then
+  compinit -C -d "$_comp_path"
+else
+  compinit -d "$_comp_path"
+fi
+
 export ZSH="$HOME/.oh-my-zsh"
 
 ZSH_THEME="robbyrussell"
@@ -44,11 +56,15 @@ export PATH=$PATH:$ANDROID_HOME/cmdline-tools/latest/bin
 export PATH=$PATH:$ANDROID_HOME/platform-tools
 
 export PATH="$HOME/.asdf/shims:$PATH"
-. $(brew --prefix asdf)/libexec/asdf.sh
-export LDFLAGS="-L$(brew --prefix tcl-tk)/lib"
-export CPPFLAGS="-I$(brew --prefix tcl-tk)/include"
-export PKG_CONFIG_PATH="$(brew --prefix tcl-tk)/lib/pkgconfig"
-export PATH="$(brew --prefix tcl-tk)/bin:$PATH"
+# . $(brew --prefix asdf)/libexec/asdf.sh
+[ -f "/usr/local/opt/asdf/libexec/asdf.sh" ] && . /usr/local/opt/asdf/libexec/asdf.sh
+
+if [ -d "/usr/local/opt/tcl-tk" ]; then
+    export LDFLAGS="-L/usr/local/opt/tcl-tk/lib"
+    export CPPFLAGS="-I/usr/local/opt/tcl-tk/include"
+    export PKG_CONFIG_PATH="/usr/local/opt/tcl-tk/lib/pkgconfig"
+    export PATH="/usr/local/opt/tcl-tk/bin:$PATH"
+fi
 
 
 
