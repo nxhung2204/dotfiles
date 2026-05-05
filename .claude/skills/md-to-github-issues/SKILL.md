@@ -1,5 +1,5 @@
 ---
-name: sync-github-issues
+name: md-to-github-issues
 allowed-tools: Read, Edit, Grep, Write, mcp__github__create_issue, mcp__github__list_issues
 description: Sync local issue files to GitHub Issues. Use when user asks "sync issues to github"
 ---
