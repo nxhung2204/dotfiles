@@ -15,6 +15,7 @@
 | :--- | :--- |
 | **[write-a-prd](./write-a-prd/SKILL.md)** | Create PRD through user interview, codebase exploration, and module design. Identifies durable architectural patterns and submits as GitHub issue. |
 | **[github-issues-to-md](./github-issues-to-md/SKILL.md)** | Fetch GitHub Issues and save locally as Markdown in `specs/issues/[number].md`. Converts issues for local management and review. |
+| **[drill-issue](./drill-issue/SKILL.md)** | Deep dive into issue content through systematic questioning. Clarifies requirements, constraints, edge cases until crystal-clear. Generates implementation checklist as output. |
 | **[md-to-github-issues](./md-to-github-issues/SKILL.md)** | Sync approved local issue files from `specs/issues/` to GitHub Issues. Updates issue numbers in local files automatically. |
 | **[generate-issues](./generate-issues/SKILL.md)** | Create individual issue files from `specs/story.md` tasks. Generates `specs/issues/[number]-[slug].md` files with implementation guides. |
 
