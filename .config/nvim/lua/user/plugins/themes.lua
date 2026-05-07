@@ -5,14 +5,19 @@ local function read_saved()
 	if f then
 		local name = f:read("*l")
 		f:close()
-		if name and name ~= "" then return name end
+		if name and name ~= "" then
+			return name
+		end
 	end
 	return "github_dark_dimmed"
 end
 
 local function save_colorscheme(name)
 	local f = io.open(persist_file, "w")
-	if f then f:write(name) f:close() end
+	if f then
+		f:write(name)
+		f:close()
+	end
 end
 
 local function apply_statusline()
@@ -76,5 +81,11 @@ return {
 
 			vim.cmd("colorscheme " .. read_saved())
 		end,
+	},
+	{
+		"folke/tokyonight.nvim",
+		lazy = false,
+		priority = 1000,
+		opts = {},
 	},
 }
