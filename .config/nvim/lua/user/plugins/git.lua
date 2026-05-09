@@ -39,7 +39,7 @@ return {
 		cmd = "Neogit",
 		opts = {
 			integrations = {
-				telescope = true,
+				snacks = true,
 			},
 			disable_line_numbers = false,
 			disable_relative_line_numbers = false,

@@ -49,30 +49,15 @@ return {
 				callback = apply_statusline,
 			})
 
-			-- :CS — open Telescope colorscheme picker and persist selection
+			-- :CS — open Snacks colorscheme picker and persist selection
 			vim.api.nvim_create_user_command("CS", function()
-				require("telescope.builtin").colorscheme({
-					enable_preview = true,
-					attach_mappings = function(_, map)
-						local actions = require("telescope.actions")
-						local action_state = require("telescope.actions.state")
-						map("i", "<CR>", function(bufnr)
-							local selected = action_state.get_selected_entry()
-							actions.close(bufnr)
-							if selected then
-								vim.cmd("colorscheme " .. selected.value)
-								save_colorscheme(selected.value)
-							end
-						end)
-						map("n", "<CR>", function(bufnr)
-							local selected = action_state.get_selected_entry()
-							actions.close(bufnr)
-							if selected then
-								vim.cmd("colorscheme " .. selected.value)
-								save_colorscheme(selected.value)
-							end
-						end)
-						return true
+				Snacks.picker.colorschemes({
+					confirm = function(picker, item)
+						picker:close()
+						if item then
+							vim.cmd("colorscheme " .. item.text)
+							save_colorscheme(item.text)
+						end
 					end,
 				})
 			end, { nargs = 0 })
