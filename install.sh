@@ -65,7 +65,8 @@ if ask "Tạo backup config cũ trước khi stow?"; then
     BACKUP_DIR="$HOME/.dotfiles-backup/$(date +%Y%m%d-%H%M%S)"
     mkdir -p "$BACKUP_DIR"
     echo "📦 Backup vào: $BACKUP_DIR"
-    cp -r ~/.config/nvim ~/.config/karabiner ~/.zshrc ~/.tmux.conf "$BACKUP_DIR/" 2>/dev/null || true
+    cp -r ~/.config/nvim ~/.config/karabiner ~/.config/wezterm ~/.zshrc ~/.tmux.conf ~/.gitconfig ~/.vimrc 2>/dev/null || true
+    mv ~/.* "$BACKUP_DIR/" 2>/dev/null || true
 fi
 
 brew install stow || true
@@ -96,15 +97,19 @@ if [ ! -d "$HOME/.oh-my-zsh" ]; then
 fi
 
 # ====================== ZSH PLUGINS ======================
-echo "🔌 Cài Oh My Zsh plugins..."
-ZSH_CUSTOM="${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}"
-mkdir -p "$ZSH_CUSTOM/plugins"
+if [ -d "$HOME/.oh-my-zsh" ]; then
+    echo "🔌 Cài Oh My Zsh plugins..."
+    ZSH_CUSTOM="${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}"
+    mkdir -p "$ZSH_CUSTOM/plugins"
 
-for plugin in zsh-autosuggestions zsh-syntax-highlighting; do
-    if [ ! -d "$ZSH_CUSTOM/plugins/$plugin" ]; then
-        git clone --depth=1 "https://github.com/zsh-users/$plugin" "$ZSH_CUSTOM/plugins/$plugin"
-    fi
-done
+    for plugin in zsh-autosuggestions zsh-syntax-highlighting; do
+        if [ ! -d "$ZSH_CUSTOM/plugins/$plugin" ]; then
+            git clone --depth=1 "https://github.com/zsh-users/$plugin" "$ZSH_CUSTOM/plugins/$plugin"
+        fi
+    done
+else
+    echo "⊘ Oh My Zsh not installed, skipping zsh plugins"
+fi
 
 # ====================== STARSHIP ======================
 echo "⭐ Cài Starship prompt..."
