@@ -26,6 +26,7 @@ source scripts/install/wm.sh
 source scripts/install/codex.sh
 source scripts/install/gemini.sh
 source scripts/install/vim.sh
+source scripts/install/claude.sh
 
 # ====================== INSTALLATION FLOW ======================
 install_xcode
@@ -41,6 +42,7 @@ install_wm
 install_codex
 install_gemini
 install_vim
+install_claude
 
 # ====================== FINAL ======================
 log_header "INSTALLATION COMPLETE"

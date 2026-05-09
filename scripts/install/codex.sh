@@ -17,8 +17,8 @@ install_codex() {
     echo "🔗 Creating symlinks for codex config..."
     mkdir -p "$HOME/.codex"
     ln -sf "$DOTFILES_DIR/.codex/config.toml" "$HOME/.codex/config.toml"
-    ln -sf "$DOTFILES_DIR/.codex/rules" "$HOME/.codex/rules"
-    ln -sf "$DOTFILES_DIR/.codex/skills" "$HOME/.codex/skills"
+    rm -rf "$HOME/.codex/rules" && ln -sf "$DOTFILES_DIR/.codex/rules" "$HOME/.codex/rules"
+    rm -rf "$HOME/.codex/skills" && ln -sf "$DOTFILES_DIR/.codex/skills" "$HOME/.codex/skills"
 
     log_success "Codex setup complete"
 }

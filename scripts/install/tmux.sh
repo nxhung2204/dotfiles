@@ -15,8 +15,7 @@ install_tmux() {
 
     echo "🔗 Creating symlinks for tmux config..."
     ln -sf "$DOTFILES_DIR/.tmux.conf" "$HOME/.tmux.conf"
-    mkdir -p "$HOME/.config/tmux"
-    ln -sf "$DOTFILES_DIR/.config/tmux" "$HOME/.config/tmux"
+    rm -rf "$HOME/.config/tmux" && ln -sf "$DOTFILES_DIR/.config/tmux" "$HOME/.config/tmux"
 
     mkdir -p "$HOME/.local/bin/scripts"
     ln -sf "$DOTFILES_DIR/scripts/tmux-sessionizer" "$HOME/.local/bin/scripts/tmux-sessionizer"
