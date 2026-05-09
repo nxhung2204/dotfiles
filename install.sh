@@ -56,7 +56,27 @@ asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git || true
 asdf plugin add python || true
 asdf plugin add ruby https://github.com/asdf-vm/asdf-ruby.git || true
 
-echo "💡 Lưu ý: Sau khi cài xong, bạn cần chạy lệnh sau để cài Node.js:"
+if ask "Cài Node.js latest version?"; then
+    asdf install nodejs latest
+    asdf global nodejs latest
+fi
+
+if ask "Cài Python latest version?"; then
+    asdf install python latest
+    asdf global python latest
+fi
+
+if ask "Cài Ruby latest version?"; then
+    asdf install ruby latest
+    asdf global ruby latest
+fi
+
+# ====================== DIRENV ======================
+echo "🔐 Thiết lập direnv..."
+if ! grep -q "direnv hook" ~/.zshrc; then
+    echo 'eval "$(direnv hook zsh)"' >> ~/.zshrc
+    echo "✅ Direnv hook added to .zshrc"
+fi
 
 # ====================== SYMLINK ======================
 echo "🔗 Tạo symbolic links..."
@@ -136,10 +156,9 @@ echo -e "${GREEN}✅ Cài đặt dotfiles hoàn tất!${NC}"
 echo ""
 echo "Các bước tiếp theo:"
 echo "1. source ~/.zshrc"
-echo "2. asdf install nodejs latest && asdf global nodejs latest"
-echo "3. asdf install python latest && asdf global python latest   (nếu cần)"
-echo "4. Mở Karabiner-Elements → Enable"
-echo "5. Neovim → :Lazy sync"
-echo "6. tmux → Prefix + I"
+echo "2. Mở Karabiner-Elements → Enable"
+echo "3. Neovim → :Lazy sync (cài plugins)"
+echo "4. tmux → Prefix + I (cài TPM plugins)"
+echo "5. direnv allow . (nếu dùng .envrc files)"
 echo ""
 echo "Chúc bạn code vui! 🔥"
