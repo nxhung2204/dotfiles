@@ -1,59 +1,68 @@
-## Requiments
-- nvim 0.11
+# dotfiles
+
+Personal macOS development environment configuration managed via GNU Stow.
+
+## Requirements
+
+- macOS
+- nvim 0.11+
 - tmux
 - wezterm
+- AeroSpace (tiling window manager)
+- Borders (window border highlight)
 
-## Getting started
-1. Asdf
-- Manage all your runtime versions with one tool!
-- Installing for macOS:
-```
-brew install asdf
-```
+## Quick Setup
 
-- Add asdf to zsh shell
-```
-export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
+```bash
+chmod +x install.sh
+./install.sh
 ```
 
-- Source zsh file to load new env
-```
-source ~/.zshrc
-```
+The installer handles:
+- Xcode CLI tools
+- Homebrew + Brewfile packages
+- asdf (runtime version manager)
+- direnv
+- GNU Stow (symlinks)
+- Oh My Zsh + plugins
+- Starship prompt
+- Tmux Plugin Manager
+- AeroSpace + Borders (window manager)
 
-2. Ruby
-- Install ruby plugin for asdf version manager
-```
-asdf plugin add ruby https://github.com/asdf-vm/asdf-ruby.git
-```
+## What's Included
 
-- Install a specify ruby version
-```
-asdf install ruby x.x.x
-```
+| Tool | Config path |
+|------|-------------|
+| Neovim | `.config/nvim/` |
+| Tmux | `.config/tmux/` |
+| Wezterm | `.config/wezterm/` |
+| AeroSpace | `.config/aerospace/` |
+| Borders | `.config/borders/` |
+| Zsh | `.zshrc` |
+| Git | `.gitconfig` |
+| Starship | `.config/starship.toml` |
 
-- Set a local ruby version
-```
-asdf local ruby x.x.x
-```
+## Neovim
 
-- Install a ruby version
+Plugin manager: **Lazy.nvim**. Key plugins:
+- **snacks.nvim** — picker, explorer, notifier, image preview, input
+- **nvim-cmp** — completion
+- **nvim-lspconfig + mason** — LSP
+- **neogit + gitsigns** — git
+- **conform + nvim-lint** — formatting & linting
+- **copilot.lua** — AI completion
 
-- Give permissions to `script.sh`
-```
-chmod +x script.sh
-```
+First launch: `:Lazy sync`
 
-- Run script for automatic setup:
-```
-./script.sh
-```
+## Environment Variables
 
-- Setup env secret:
-Copy .env.sample to ~/.env and setup env variables
-```
+```bash
 cp .env.sample ~/.env
 vi ~/.env
 ```
 
 ## Troubleshooting
+
+- **Tmux plugins missing**: `Prefix + I` to install via TPM
+- **Neovim LSP not working**: run `:Mason` to install language servers
+- **Symlinks broken**: re-run `./install.sh` and choose the stow step
