@@ -57,7 +57,6 @@ return {
 				"ts_ls",
 			}
 
-			local lspconfig = require("lspconfig")
 			local utils = require("user.core.utils")
 
 			vim.o.winbar = "%{%v:lua.require('user.core.utils').get_filepath_with_navic()%}"
@@ -74,7 +73,8 @@ return {
 				if has_custom_opts then
 					opts = vim.tbl_deep_extend("force", opts, server_custom_opts)
 				end
-				lspconfig[server].setup(opts)
+				vim.lsp.config(server, opts)
+				vim.lsp.enable(server)
 			end
 		end,
 	},
@@ -100,6 +100,7 @@ return {
 				"vue-language-server",
 				"ruby-lsp",
 				"vtsls",
+				"tailwindcss-language-server",
 			},
 			ui = {
 				border = "rounded",

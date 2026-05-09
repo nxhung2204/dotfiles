@@ -4,7 +4,6 @@ return {
 		dependencies = { -- THÊM DÒNG NÀY: Dependency bắt buộc
 			"nvim-lua/plenary.nvim",
 		},
-		tag = "0.1.1",
 		cmd = "Telescope",
 		event = "VeryLazy",
 		opts = {
