@@ -109,24 +109,24 @@ return {
 			{ "<leader>gh", "<cmd>CodeDiff history<cr>", desc = "Commit history" },
 		},
 	},
-	{
-		dir = "~/Dev/personal/conflict.nvim",
-		config = function()
-			require("conflict").setup({
-				ui = {
-					markers = true,
-				},
-			})
-		end,
-	},
-	{
-		dir = "~/Dev/personal/commit.nvim",
-		config = function()
-			require("commit").setup({
-				provider = "ollama",
-				model = "gemma2:2b", -- or qwen, mistral, etc.
-				base_url = "http://203.171.31.46:11434",
-			})
-		end,
-	},
+	-- {
+	-- 	dir = "~/Dev/personal/conflict.nvim",
+	-- 	config = function()
+	-- 		require("conflict").setup({
+	-- 			ui = {
+	-- 				markers = true,
+	-- 			},
+	-- 		})
+	-- 	end,
+	-- },
+	-- {
+	-- 	dir = "~/Dev/personal/commit.nvim",
+	-- 	config = function()
+	-- 		require("commit").setup({
+	-- 			provider = "ollama",
+	-- 			model = "gemma2:2b", -- or qwen, mistral, etc.
+	-- 			base_url = "http://203.171.31.46:11434",
+	-- 		})
+	-- 	end,
+	-- },
 }

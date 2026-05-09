@@ -10,8 +10,8 @@ return {
 			{ "<leader>rf", "<cmd>Vfixture<cr>", desc = "Open Fixture" },
 		},
 	},
-	{
-		dir = "/Users/rightsvn-hung/Dev/personal/rails-tools.nvim",
-		ft = { "ruby", "yaml", "erb" },
-	},
+	-- {
+	-- 	dir = "/Users/rightsvn-hung/Dev/personal/rails-tools.nvim",
+	-- 	ft = { "ruby", "yaml", "erb" },
+	-- },
 }
