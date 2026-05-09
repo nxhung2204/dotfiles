@@ -23,6 +23,8 @@ source scripts/install/omz.sh
 source scripts/install/starship.sh
 source scripts/install/tmux.sh
 source scripts/install/wm.sh
+source scripts/install/codex.sh
+source scripts/install/gemini.sh
 
 # ====================== INSTALLATION FLOW ======================
 install_xcode
@@ -35,6 +37,8 @@ install_omz
 install_starship
 install_tmux
 install_wm
+install_codex
+install_gemini
 
 # ====================== FINAL ======================
 log_header "INSTALLATION COMPLETE"
