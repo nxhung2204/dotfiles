@@ -22,6 +22,7 @@ source scripts/install/stow.sh
 source scripts/install/omz.sh
 source scripts/install/starship.sh
 source scripts/install/tmux.sh
+source scripts/install/wm.sh
 
 # ====================== INSTALLATION FLOW ======================
 install_xcode
@@ -33,6 +34,7 @@ install_stow
 install_omz
 install_starship
 install_tmux
+install_wm
 
 # ====================== FINAL ======================
 log_header "INSTALLATION COMPLETE"
