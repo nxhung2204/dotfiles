@@ -31,10 +31,14 @@ brew "swiftformat"
 brew "xcode-build-server"
 brew "xcbeautify"
 
-#Development
+# Development
 brew "claude-code"
 brew "visual-studio-code"
 brew "sublime-text"
+
+# Work
+brew "notion"
+brew "postman"
 
 # ========================
 # CASKS

@@ -25,6 +25,7 @@ source scripts/install/tmux.sh
 source scripts/install/wm.sh
 source scripts/install/codex.sh
 source scripts/install/gemini.sh
+source scripts/install/vim.sh
 
 # ====================== INSTALLATION FLOW ======================
 install_xcode
@@ -39,6 +40,7 @@ install_tmux
 install_wm
 install_codex
 install_gemini
+install_vim
 
 # ====================== FINAL ======================
 log_header "INSTALLATION COMPLETE"
