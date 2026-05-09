@@ -67,6 +67,7 @@ if [ -d "/usr/local/opt/tcl-tk" ]; then
 fi
 
 
+alias n="nvim"
 
 # opencode
 export PATH=/Users/rightsvn-hung/.opencode/bin:$PATH
@@ -120,3 +121,4 @@ export DATABASE_PASSWORD="12345678"
 # Disable GSS encryption mode
 export PGGSSENCMODE=disable
 export PATH="$HOME/.local/bin:$PATH"
+eval "$(starship init zsh)"
