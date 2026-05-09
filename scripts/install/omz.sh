@@ -18,6 +18,9 @@ install_omz() {
         log_success "Oh My Zsh already installed"
     fi
 
+    echo "🔗 Creating symlinks for zsh config..."
+    ln -sf "$DOTFILES_DIR/.zshrc" "$HOME/.zshrc"
+
     # Install plugins only if Oh My Zsh is present
     if [ -d "$HOME/.oh-my-zsh" ]; then
         echo "🔌 Installing Oh My Zsh plugins..."
