@@ -27,7 +27,8 @@ config.window_padding = {
 }
 
 -- Font
-config.font = wezterm.font("JetBrainsMonoNL Nerd Font")
+-- config.font = wezterm.font("JetBrainsMonoNL Nerd Font")
+config.font = wezterm.font('FiraCode Nerd Font')
 config.font_size = 14.0
 config.line_height = 1.6
 
