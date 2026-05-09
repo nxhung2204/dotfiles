@@ -41,20 +41,21 @@ return {
 			-- attach servers
 			local servers = {
 				-- "solargraph",
-				"phpactor",
-				"vtsls",
+				"bashls",
+				"cssls",
+				"emmet_ls",
 				"eslint",
 				"jsonls",
-				"emmet_ls",
-				"volar",
 				"lua_ls",
+				"phpactor",
 				"pyright",
-				"tailwindcss",
-				"sourcekit",
-				"cssls",
-				"kotlin_language_server",
 				"ruby_lsp",
+				"sourcekit",
+				"tailwindcss",
 				"ts_ls",
+				"volar",
+				"vtsls",
+				"kotlin_language_server",
 			}
 
 			local utils = require("user.core.utils")
@@ -84,6 +85,7 @@ return {
 		opts = {
 			ensure_installed = {
 				-- LSP Servers
+				"bash-language-server",
 				"cssls",
 				"emmet_ls",
 				"eslint",
@@ -104,6 +106,7 @@ return {
 				"html",
 				"prettier",
 				"rubocop",
+				"shfmt",
 				"stylua",
 				-- Build tools
 				"kotlin_language_server",
