@@ -1,6 +1,0 @@
-##!/bin/bash
-
-borders width=4 \
-  active_color=0xffff5555 \
-  inactive_color=0x00000000 \
-  hidpi=on!/bin/bash
