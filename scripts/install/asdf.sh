@@ -9,21 +9,25 @@ install_asdf() {
     asdf plugin add python || true
     asdf plugin add ruby https://github.com/asdf-vm/asdf-ruby.git || true
 
-    if ask "Install Node.js latest version?"; then
-        asdf install nodejs latest
-        asdf global nodejs latest
-        log_success "Node.js installed"
+    if ask "Install Node.js 22.22.2 (LTS)?"; then
+        asdf install nodejs 22.22.2
+        asdf set -u nodejs 22.22.2
+        log_success "Node.js 22.22.2 installed"
     fi
 
-    if ask "Install Python latest version?"; then
-        asdf install python latest
-        asdf global python latest
-        log_success "Python installed"
+    if ask "Install Python 3.13.3?"; then
+        asdf install python 3.13.3
+        asdf set -u python 3.13.3
+        log_success "Python 3.13.3 installed"
     fi
 
-    if ask "Install Ruby latest version?"; then
-        asdf install ruby latest
-        asdf global ruby latest
-        log_success "Ruby installed"
+    if ask "Install Ruby 3.3.11?"; then
+        if command -v brew &>/dev/null; then
+            brew list libyaml &>/dev/null || brew install libyaml
+            export RUBY_CONFIGURE_OPTS="--with-libyaml-dir=$(brew --prefix libyaml)"
+        fi
+        asdf install ruby 3.3.11
+        asdf set -u ruby 3.3.11
+        log_success "Ruby 3.3.11 installed"
     fi
 }

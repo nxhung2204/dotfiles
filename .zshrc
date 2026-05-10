@@ -122,7 +122,7 @@ export PATH="$HOME/.local/bin:$PATH"
 # ALias
 alias n="nvim"
 
-
+export PATH="$HOME/.asdf/shims:$PATH"
 
 # Hook starship
 eval "$(starship init zsh)"
