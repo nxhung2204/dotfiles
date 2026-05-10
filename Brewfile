@@ -35,6 +35,8 @@ brew "xcbeautify"
 brew "claude-code"
 brew "visual-studio-code"
 brew "sublime-text"
+brew "docker"
+brew "docker-desktop"
 
 # Work
 brew "notion"
