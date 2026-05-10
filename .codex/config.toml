@@ -1,10 +1,6 @@
 personality = "pragmatic"
 model = "gpt-5.4"
 model_reasoning_effort = "medium"
-[mcp_servers.pencil]
-command = "/Users/rightsvn-hung/.vscode/extensions/highagency.pencildev-0.6.36/out/mcp-server-darwin-x64"
-args = [ "--app", "visual_studio_code" ]
-
 [projects."/Users/rightsvn-hung/Dev/rights/rights_vn_office_management_mobile"]
 trust_level = "trusted"
 
