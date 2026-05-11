@@ -6,6 +6,9 @@ brew "stow"
 brew "asdf"
 brew "starship"
 
+tap "leoafarias/fvm"
+brew "fvm"
+
 # Search & Navigation
 brew "ripgrep"
 brew "fd"
@@ -24,6 +27,10 @@ brew "coreutils"
 brew "gnu-sed"
 brew "jq"
 
+# Databases
+brew "postgresql@17"
+brew "mysql"
+
 # Neovim
 brew "lua-language-server"
 brew "stylua"
@@ -33,10 +40,13 @@ brew "xcbeautify"
 
 # Development
 brew "claude-code"
-brew "visual-studio-code"
-brew "sublime-text"
 brew "docker"
 brew "docker-desktop"
+
+# Editors
+cask "visual-studio-code"
+cask "sublime-text"
+cask "android-studio"
 
 # Work
 brew "notion"
