@@ -56,4 +56,24 @@ install_mobile() {
             fi
         fi
     fi
+
+    # 4. CocoaPods
+    log_info "Checking for CocoaPods..."
+    if ! command -v pod &>/dev/null; then
+        if ask "Install CocoaPods?"; then
+            log_info "Installing CocoaPods..."
+            if command -v gem &>/dev/null; then
+                gem install cocoapods
+                [ -d "$HOME/.asdf" ] && command -v asdf &>/dev/null && asdf reshim ruby
+                log_success "CocoaPods installed via gem"
+            elif command -v brew &>/dev/null; then
+                brew install cocoapods
+                log_success "CocoaPods installed via Homebrew"
+            else
+                log_error "Neither gem nor brew found. Cannot install CocoaPods."
+            fi
+        fi
+    else
+        log_success "CocoaPods already installed"
+    fi
 }
