@@ -1,7 +1,6 @@
 return {
 	"folke/snacks.nvim",
 	opts = {
-		animate = { enabled = true },
 		scope = { enabled = true },
 		scroll = { enabled = true },
 		bigfile = { enabled = true },

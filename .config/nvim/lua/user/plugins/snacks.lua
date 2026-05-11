@@ -8,18 +8,6 @@ return {
 		indent = { enabled = true },
 		scope = { enabled = true },
 		gh = {},
-		explorer = {
-			enabled = true,
-			hidden = true,
-			win = {
-				list = {
-					wo = {
-						number = true,
-						relativenumber = true,
-					},
-				},
-			},
-		},
 		image = {
 			enabled = true,
 			backend = "kitty",
@@ -44,9 +32,6 @@ return {
 				files = {
 					hidden = true,
 				},
-				explorer = {
-					hidden = true,
-				},
 			},
 		},
 		quickfile = { enabled = true },
@@ -56,52 +41,6 @@ return {
 		words = { enabled = true },
 	},
 	keys = {
-		-- Explorer
-		{
-			"<leader>e",
-			function()
-				Snacks.explorer()
-				vim.defer_fn(function()
-					for _, win in ipairs(vim.api.nvim_list_wins()) do
-						local ft = vim.bo[vim.api.nvim_win_get_buf(win)].filetype
-						if ft:match("^snacks") then
-							vim.api.nvim_win_call(win, function()
-								vim.cmd("normal! zz")
-							end)
-							break
-						end
-					end
-				end, 100)
-			end,
-			desc = "File Explorer",
-		},
-		{
-			"<leader>.",
-			function()
-				local file = vim.fn.expand("%:p")
-				for _, win in ipairs(vim.api.nvim_list_wins()) do
-					local ft = vim.bo[vim.api.nvim_win_get_buf(win)].filetype
-					if ft:match("^snacks") then
-						vim.api.nvim_set_current_win(win)
-						vim.cmd("normal! zz")
-						return
-					end
-				end
-				Snacks.explorer({ reveal = file })
-				vim.defer_fn(function()
-					for _, win in ipairs(vim.api.nvim_list_wins()) do
-						local ft = vim.bo[vim.api.nvim_win_get_buf(win)].filetype
-						if ft:match("^snacks") then
-							vim.api.nvim_win_call(win, function()
-								vim.cmd("normal! zz")
-							end)
-							break
-						end
-					end
-				end, 100)
-			end,
-			desc = "Reveal file in Explorer",
-		},
 		-- Picker (replacing telescope)
 		{
 			"<leader>sf",
