@@ -128,6 +128,7 @@ eval "$(starship init zsh)"
 
 # eza (modern ls)
 if command -v eza &>/dev/null; then
+    export EZA_CONFIG_DIR="$HOME/.config/eza"
     alias ls="eza --icons --group-directories-first"
     alias ll="eza -lbF --git --icons"
     alias la="eza -lbhHigUmuSa --time-style=long-iso --git --icons"
