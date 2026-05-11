@@ -16,8 +16,6 @@ chmod +x install.sh
 | Neovim | `.config/nvim/` |
 | Tmux | `.config/tmux/` |
 | Wezterm | `.config/wezterm/` |
-| AeroSpace | `.config/aerospace/` |
-| Borders | `.config/borders/` |
 | Zsh | `.zshrc` |
 | Git | `.gitconfig` |
 | Starship | `.config/starship.toml` |
