@@ -125,3 +125,11 @@ alias ri="cd ~/Dev/rights"
 
 # Hook starship
 eval "$(starship init zsh)"
+
+# eza (modern ls)
+if command -v eza &>/dev/null; then
+    alias ls="eza --icons --group-directories-first"
+    alias ll="eza -lbF --git --icons"
+    alias la="eza -lbhHigUmuSa --time-style=long-iso --git --icons"
+    alias lt="eza --tree --level=2 --icons"
+fi
