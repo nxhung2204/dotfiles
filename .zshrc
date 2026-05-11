@@ -71,8 +71,6 @@ export TERM=xterm-256color
 # jcom-androidTV_do_local
 # export JAVA_HOME=$(/usr/libexec/java_home -v 1.8)
 # export JAVA_HOME="/usr/local/opt/openjdk@8"
-export GRADLE_HOME="${HOME}/.gradle/wrapper/dists/gradle-3.5-all/xxxxxxxxxxxxx/gradle-3.5/bin"
-PATH=${PATH}:${GRADLE_HOME}
 
 export ANDROID_SDK_ROOT="${HOME}/Library/Android/sdk"
 export ANDROID_HOME="${HOME}/Library/Android/sdk"

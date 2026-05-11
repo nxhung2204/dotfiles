@@ -35,4 +35,19 @@ install_mobile() {
     else
         log_success "SDKMAN! already installed"
     fi
+
+    # 3. Gradle (via SDKMAN!)
+    if [ -d "$HOME/.sdkman" ]; then
+        # shellcheck source=/dev/null
+        export SDKMAN_DIR="$HOME/.sdkman"
+        [[ -s "$SDKMAN_DIR/bin/sdkman-init.sh" ]] && source "$SDKMAN_DIR/bin/sdkman-init.sh"
+
+        if command -v sdk &>/dev/null; then
+            if ask "Install latest Gradle via SDKMAN!?"; then
+                echo "🐘 Installing Gradle..."
+                sdk install gradle
+                log_success "Gradle installed"
+            fi
+        fi
+    fi
 }
