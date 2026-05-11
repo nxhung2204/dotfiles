@@ -40,24 +40,18 @@ eval "$(direnv hook zsh)"
 
 # Envs
 export PATH=$HOME/bin:/usr/local/bin:$PATH
-export PATH="/Applications/Postgres.app/Contents/Versions/17/bin:$PATH"
-export PATH="$HOME/flutter/bin:$PATH"
-# export PATH="/usr/local/opt/openjdk@21/bin:$PATH"
-export PATH="/usr/local/opt/node@18/bin:$PATH"
+export PATH="/usr/local/opt/postgresql@17/bin:$PATH"
+export PATH="$HOME/fvm/default/bin:$PATH"
+
+# ASDF
+export PATH="$HOME/.asdf/shims:$PATH"
+if [ -f "/usr/local/opt/asdf/libexec/asdf.sh" ]; then
+    . /usr/local/opt/asdf/libexec/asdf.sh
+    # Hook for asdf-java to set JAVA_HOME
+    [ -f "$HOME/.asdf/plugins/java/set-java-home.zsh" ] && . "$HOME/.asdf/plugins/java/set-java-home.zsh"
+fi
 
 # Android
-export ANDROID_HOME=~/Library/Android/sdk
-# export JAVA_HOME=$(/usr/libexec/java_home)
-
-export PATH=$PATH:$ANDROID_HOME/emulator
-export PATH=$PATH:$ANDROID_HOME/tools
-export PATH=$PATH:$ANDROID_HOME/tools/bin
-export PATH=$PATH:$ANDROID_HOME/cmdline-tools/latest/bin
-export PATH=$PATH:$ANDROID_HOME/platform-tools
-
-export PATH="$HOME/.asdf/shims:$PATH"
-# . $(brew --prefix asdf)/libexec/asdf.sh
-[ -f "/usr/local/opt/asdf/libexec/asdf.sh" ] && . /usr/local/opt/asdf/libexec/asdf.sh
 
 if [ -d "/usr/local/opt/tcl-tk" ]; then
     export LDFLAGS="-L/usr/local/opt/tcl-tk/lib"
@@ -99,9 +93,6 @@ cordova_clean() {
   echo "Removed plugins in corodova project"
 }
 
-export JAVA_HOME=/usr/local/opt/openjdk@17
-export PATH="/usr/local/opt/openjdk@17/bin:$PATH"
-
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
@@ -109,9 +100,7 @@ export SDKMAN_DIR="$HOME/.sdkman"
 nv () { NVIM_APPNAME="minimal-nvim" nvim }
 
 
-export PATH="/usr/local/opt/postgresql@16/bin:$PATH"
-
-export PATH="/Users/rightsvn-hung/llama.cpp/build/bin:$PATH"
+export PATH="/Users/rightsvn-hung/.opencode/bin:$PATH"
 
 export DATABASE_PASSWORD="12345678"
 
@@ -121,8 +110,14 @@ export PATH="$HOME/.local/bin:$PATH"
 
 # ALias
 alias n="nvim"
+alias v="nvim"
+alias c="clear"
+alias t="tmux"
+alias ta="tmux attach"
+alias da="tmux detach"
 
-export PATH="$HOME/.asdf/shims:$PATH"
+alias pe="cd ~/Dev/personal"
+alias ri="cd ~/Dev/rights"
 
 # Hook starship
 eval "$(starship init zsh)"
