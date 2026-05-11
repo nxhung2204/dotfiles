@@ -8,11 +8,14 @@ install_asdf() {
     asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git || true
     asdf plugin add python || true
     asdf plugin add ruby https://github.com/asdf-vm/asdf-ruby.git || true
+    asdf plugin add java https://github.com/halcyon/asdf-java.git || true
 
     if ask "Install Node.js 22.22.2 (LTS)?"; then
         asdf install nodejs 22.22.2
         asdf set -u nodejs 22.22.2
-        log_success "Node.js 22.22.2 installed"
+        # Enable corepack for yarn and pnpm (standard in modern Node.js)
+        corepack enable
+        log_success "Node.js 22.22.2 installed (Yarn and PNPM enabled via Corepack)"
     fi
 
     if ask "Install Python 3.13.3?"; then
@@ -29,5 +32,11 @@ install_asdf() {
         asdf install ruby 3.3.11
         asdf set -u ruby 3.3.11
         log_success "Ruby 3.3.11 installed"
+    fi
+
+    if ask "Install Java (Temurin 17)?"; then
+        asdf install java openjdk-17
+        asdf set -u java openjdk-17
+        log_success "Java 17 installed"
     fi
 }
