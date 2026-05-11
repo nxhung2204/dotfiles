@@ -6,12 +6,13 @@ install_database() {
 
     # PostgreSQL
     if ask "Install PostgreSQL (v17)?"; then
+        log_info "Checking PostgreSQL v17..."
         if ! brew list postgresql@17 &>/dev/null; then
-            echo "🐘 Installing PostgreSQL@17..."
+            log_info "Installing PostgreSQL@17..."
             brew install postgresql@17
         fi
         
-        echo "🚀 Starting PostgreSQL service..."
+        log_info "Starting PostgreSQL service..."
         brew services start postgresql@17 || true
         
         # Add to PATH for current session if not already there
@@ -22,12 +23,13 @@ install_database() {
 
     # MySQL
     if ask "Install MySQL?"; then
+        log_info "Checking MySQL..."
         if ! brew list mysql &>/dev/null; then
-            echo "🐬 Installing MySQL..."
+            log_info "Installing MySQL..."
             brew install mysql
         fi
         
-        echo "🚀 Starting MySQL service..."
+        log_info "Starting MySQL service..."
         brew services start mysql || true
         
         log_success "MySQL setup complete"

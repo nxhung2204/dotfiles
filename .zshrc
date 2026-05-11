@@ -45,8 +45,15 @@ export PATH="$HOME/fvm/default/bin:$PATH"
 
 # ASDF
 export PATH="$HOME/.asdf/shims:$PATH"
-if [ -f "/usr/local/opt/asdf/libexec/asdf.sh" ]; then
-    . /usr/local/opt/asdf/libexec/asdf.sh
+ASDF_DIR=""
+if [ -f "/opt/homebrew/opt/asdf/libexec/asdf.sh" ]; then
+    ASDF_DIR="/opt/homebrew/opt/asdf"
+elif [ -f "/usr/local/opt/asdf/libexec/asdf.sh" ]; then
+    ASDF_DIR="/usr/local/opt/asdf"
+fi
+
+if [ -n "$ASDF_DIR" ]; then
+    . "$ASDF_DIR/libexec/asdf.sh"
     # Hook for asdf-java to set JAVA_HOME
     [ -f "$HOME/.asdf/plugins/java/set-java-home.zsh" ] && . "$HOME/.asdf/plugins/java/set-java-home.zsh"
 fi
@@ -76,7 +83,6 @@ export ANDROID_SDK_ROOT="${HOME}/Library/Android/sdk"
 export ANDROID_HOME="${HOME}/Library/Android/sdk"
 PATH=${PATH}:${ANDROID_SDK_ROOT}/platform-tools
 PATH=${PATH}:${ANDROID_SDK_ROOT}/tools
-export PATH="/usr/local/opt/openjdk@8/bin:$PATH"
 
 cordova_clean() {
   echo "Removing all configs in corodova project"

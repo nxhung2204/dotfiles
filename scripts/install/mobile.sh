@@ -6,8 +6,10 @@ install_mobile() {
 
     # 1. Flutter (via FVM)
     echo "🐦 Setting up Flutter (FVM)..."
+    log_info "Checking for FVM..."
     if ! command -v fvm &>/dev/null; then
         if ask "Install FVM via Homebrew?"; then
+            log_info "Installing FVM..."
             brew tap leoafarias/fvm
             brew install fvm
             log_success "FVM installed"
@@ -18,6 +20,7 @@ install_mobile() {
 
     if command -v fvm &>/dev/null; then
         if ask "Install Flutter stable version?"; then
+            log_info "Installing Flutter stable..."
             fvm install stable
             fvm global stable
             log_success "Flutter stable installed"
@@ -26,8 +29,10 @@ install_mobile() {
 
     # 2. SDKMAN!
     echo "☕ Setting up SDKMAN!..."
+    log_info "Checking for SDKMAN!..."
     if [ ! -d "$HOME/.sdkman" ]; then
         if ask "Install SDKMAN! (Software Development Kit Manager)?"; then
+            log_info "Installing SDKMAN!..."
             curl -s "https://get.sdkman.io" | bash
             log_success "SDKMAN! installed"
             log_info "Note: You may need to restart your terminal or source ~/.zshrc"
@@ -37,6 +42,7 @@ install_mobile() {
     fi
 
     # 3. Gradle (via SDKMAN!)
+    log_info "Checking for Gradle..."
     if [ -d "$HOME/.sdkman" ]; then
         # shellcheck source=/dev/null
         export SDKMAN_DIR="$HOME/.sdkman"
@@ -44,7 +50,7 @@ install_mobile() {
 
         if command -v sdk &>/dev/null; then
             if ask "Install latest Gradle via SDKMAN!?"; then
-                echo "🐘 Installing Gradle..."
+                log_info "Installing Gradle via SDKMAN!..."
                 sdk install gradle
                 log_success "Gradle installed"
             fi

@@ -5,9 +5,10 @@ install_terminal() {
     log_header "TERMINAL & UI"
 
     # 1. Tmux & TPM
-    echo "🪟 Setting up Tmux..."
+    log_info "Setting up Tmux..."
     if [ ! -d "$HOME/.tmux/plugins/tpm" ]; then
         if ask "Install Tmux Plugin Manager (TPM)?"; then
+            log_info "Installing TPM..."
             git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
             log_success "TPM installed"
         fi
@@ -15,7 +16,7 @@ install_terminal() {
         log_success "TPM already installed"
     fi
 
-    echo "🔗 Linking Tmux config..."
+    log_info "Linking Tmux config..."
     ln -sf "$DOTFILES_DIR/.tmux.conf" "$HOME/.tmux.conf"
     rm -rf "$HOME/.config/tmux" && ln -sf "$DOTFILES_DIR/.config/tmux" "$HOME/.config/tmux"
     
