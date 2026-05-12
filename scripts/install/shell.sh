@@ -1,6 +1,11 @@
 #!/usr/bin/env bash
 # Setup Shell environment: Oh My Zsh, Starship, and Direnv
 
+# Version Pinnings
+# Starship 1.25.1 - Released: 2026-04-30
+# Release: https://github.com/starship/starship/releases/tag/v1.25.1
+STARSHIP_VERSION="1.25.1"
+
 install_shell() {
     log_header "SHELL ENVIRONMENT"
 

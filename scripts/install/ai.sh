@@ -1,14 +1,23 @@
 #!/usr/bin/env bash
 # Setup AI CLI Tools: Gemini, Claude, and Codex
 
+# Version Pinnings
+# Gemini CLI 0.41.0 - Released: 2026-05-05
+# Release: https://github.com/google-gemini/gemini-cli/releases/tag/v0.41.0
+GEMINI_VERSION="0.41.0"
+
+# Codex CLI 0.130.0 - Released: 2026-05-08
+# Release: https://github.com/openai/codex/releases/tag/v0.130.0
+CODEX_VERSION="0.130.0"
+
 install_ai() {
     log_header "AI TOOLS"
 
     # --- Gemini ---
     echo "🤖 Setting up Gemini CLI..."
     if ! command -v gemini &>/dev/null; then
-        if ask "Install Gemini CLI (requires Node.js)?"; then
-            npm install -g @google/gemini-cli
+        if ask "Install Gemini CLI v$GEMINI_VERSION (requires Node.js)?"; then
+            npm install -g "@google/gemini-cli@$GEMINI_VERSION"
             log_success "Gemini CLI installed"
         fi
     else
@@ -23,8 +32,8 @@ install_ai() {
     # --- Codex ---
     echo "💻 Setting up Codex CLI..."
     if ! command -v codex &>/dev/null; then
-        if ask "Install Codex CLI (requires Node.js)?"; then
-            npm install -g @openai/codex
+        if ask "Install Codex CLI v$CODEX_VERSION (requires Node.js)?"; then
+            npm install -g "@openai/codex@$CODEX_VERSION"
             log_success "Codex CLI installed"
         fi
     else
