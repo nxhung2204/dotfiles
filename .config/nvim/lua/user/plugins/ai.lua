@@ -65,4 +65,96 @@ return {
 			end, { desc = "Toggle Copilot auto-trigger" })
 		end,
 	},
+	{
+		"folke/sidekick.nvim",
+		opts = {
+			nes = {
+				enabled = true,
+				diff = {
+					inline = "words", -- hoặc "chars"
+					show = "always",
+				},
+			},
+			cli = {
+				watch = true, -- auto reload file khi AI chỉnh sửa
+				mux = {
+					backend = "tmux", -- vì bạn dùng tmux
+					enabled = true,
+				},
+				tools = {
+					claude = {},
+					gemini = {},
+				},
+				win = {
+					keys = {},
+				},
+				session = {
+					-- Tạo tên session dựa trên tên folder hiện tại (project root)
+					name = function()
+						local cwd = vim.fn.getcwd()
+						return "sidekick-" .. vim.fn.fnamemodify(cwd, ":t") -- chỉ lấy tên folder
+					end,
+				},
+			},
+		},
+		keys = {
+			-- Tab để navigate/apply NES
+			-- {
+			-- 	"<tab>",
+			-- 	function()
+			-- 		if not require("sidekick").nes_jump_or_apply() then
+			-- 			return "<Tab>" -- fallback
+			-- 		end
+			-- 	end,
+			-- 	expr = true,
+			-- 	mode = { "i", "n" },
+			-- 	desc = "NES Jump/Apply",
+			-- },
+
+			-- {
+			-- 	"<leader>aa",
+			-- 	function()
+			-- 		require("sidekick.cli").toggle()
+			-- 	end,
+			-- 	desc = "Toggle AI CLI",
+			-- },
+			{
+				"<leader>as",
+				function()
+					require("sidekick.cli").select()
+				end,
+				desc = "Select Tool (Claude/Gemini...)",
+			},
+			{
+				"<leader>ac",
+				function()
+					require("sidekick.cli").toggle({ name = "claude", focus = true })
+				end,
+				desc = "Open Claude",
+			},
+			{
+				"<leader>ag",
+				function()
+					require("sidekick.cli").toggle({ name = "gemini", focus = true })
+				end,
+				desc = "Open Gemini",
+			},
+
+			{
+				"<leader>at",
+				function()
+					require("sidekick.cli").send({ msg = "{this}" })
+				end,
+				mode = { "n", "x" },
+				desc = "Send This",
+			},
+			{
+				"<leader>af",
+				function()
+					require("sidekick.cli").send({ msg = "{file}" })
+				end,
+				desc = "Send File",
+			},
+		},
+	},
 }
