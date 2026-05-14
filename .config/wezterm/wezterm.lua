@@ -28,8 +28,8 @@ config.window_padding = {
 
 -- Font
 -- config.font = wezterm.font("JetBrainsMonoNL Nerd Font")
-config.font = wezterm.font('FiraCode Nerd Font')
-config.font_size = 14.0
+config.font = wezterm.font("FiraCode Nerd Font")
+config.font_size = 13.5
 config.line_height = 1.6
 
 -- Scroll
@@ -37,6 +37,13 @@ config.scrollback_lines = 5000
 
 -- Keys
 config.keys = {
+	{
+		key = "w",
+		mods = "CMD",
+		action = wezterm.action.CloseCurrentPane({
+			confirm = false,
+		}),
+	},
 	-- Toggle full screen
 	{
 		key = "Enter",
@@ -108,6 +115,47 @@ config.keys = {
 		key = "0",
 		mods = "CMD",
 		action = wezterm.action.ResetFontSize,
+	},
+
+	-- Split panes
+	{
+		key = "d",
+		mods = "CMD",
+		action = wezterm.action.SplitHorizontal({ domain = "CurrentPaneDomain" }),
+	},
+	{
+		key = "d",
+		mods = "CMD|SHIFT",
+		action = wezterm.action.SplitVertical({ domain = "CurrentPaneDomain" }),
+	},
+
+	-- Navigate tabs
+	{
+		key = "[",
+		mods = "CMD|SHIFT",
+		action = wezterm.action.ActivateTabRelative(-1),
+	},
+	{
+		key = "]",
+		mods = "CMD|SHIFT",
+		action = wezterm.action.ActivateTabRelative(1),
+	},
+
+	-- Cmd + number => switch tab
+	{
+		key = "1",
+		mods = "CMD",
+		action = wezterm.action.ActivateTab(0),
+	},
+	{
+		key = "2",
+		mods = "CMD",
+		action = wezterm.action.ActivateTab(1),
+	},
+	{
+		key = "3",
+		mods = "CMD",
+		action = wezterm.action.ActivateTab(2),
 	},
 }
 
