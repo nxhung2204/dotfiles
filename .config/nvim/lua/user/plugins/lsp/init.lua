@@ -5,6 +5,7 @@ return {
 		"neovim/nvim-lspconfig",
 		event = { "BufReadPre", "BufNewFile" },
 		dependencies = {
+			"williamboman/mason.nvim",
 			{
 				"SmiteshP/nvim-navic",
 				opts = {
@@ -81,7 +82,6 @@ return {
 	},
 	{
 		"williamboman/mason.nvim",
-		cmd = "Mason",
 		opts = {
 			ensure_installed = {
 				-- LSP Servers
