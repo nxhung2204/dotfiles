@@ -134,3 +134,5 @@ if command -v eza &>/dev/null; then
     alias la="eza -lbhHigUmuSa --time-style=long-iso --git --icons"
     alias lt="eza --tree --level=2 --icons"
 fi
+
+alias ip="ipconfig getifaddr en0"
