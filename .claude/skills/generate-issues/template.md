@@ -34,9 +34,31 @@
 **Key decisions:**
 - [Non-obvious constraint or architectural choice]
 
-**Non-obvious snippets** *(only if needed)*:
-```ts
-// short example of the tricky part only
+**Flow:**
+```
+[ASCII diagram — state transitions, request flow, or data write path]
+
+Example shapes to use:
+  Actor/User → [Controller] → [Model] → DB
+                    ↓ (error)
+               [render error]
+
+  Status: draft → reviewing → published
+                              ↓ (archived)
+```
+
+**Non-obvious snippets:**
+```
+# Skeleton style — method signature + numbered step comments, no implementation body.
+# Test stubs: name describes the scenario, body is empty.
+
+def method_name
+  # 1. first step
+  # 2. second step
+end
+
+test "scenario description" do
+end
 ```
 
 ---

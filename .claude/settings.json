@@ -1,5 +1,4 @@
 {
-  "env": {},
   "hooks": {
     "Stop": [
       {
@@ -49,5 +48,6 @@
     }
   },
   "effortLevel": "medium",
-  "autoMemoryEnabled": false
+  "autoMemoryEnabled": false,
+  "hasCompletedOnboarding": true
 }

@@ -5,169 +5,138 @@ description: Deep dive into issue content through systematic questioning. Clarif
 
 # Drill Issue
 
-Systematically clarify issue requirements through targeted questioning until you reach crystal-clear understanding. Outputs actionable implementation checklist.
+Systematically clarify issue requirements through targeted questioning until requirements are unambiguous. Writes decisions back to the issue file when done.
 
 ## What this skill does
 
-Takes a synced issue file and:
-- **Questions deeply** about problem, acceptance criteria, constraints, edge cases
-- **Clarifies assumptions** about scope, dependencies, technical decisions
-- **Identifies gaps** in requirements before implementation starts
-- **Generates checklist** with concrete implementation tasks
-- **Continues iteratively** until requirements are unambiguous
-
-## Input
-
-Issue file from `specs/issues/[issue-number].md` (previously synced via `github-issues-to-md`).
+- **Reads the issue file** and existing codebase context
+- **Asks targeted questions** — generic + domain-specific based on what the issue contains
+- **Resolves contradictions** before implementation starts
+- **Writes clarified decisions back** into the issue file (Key decisions, Notes, flow diagram)
 
 ## Process
 
-### 1. Read issue file
+### 1. Read & explore first
 
-Parse:
-- Title
-- Labels
-- Body/Description
-- Current acceptance criteria (if any)
+Read the issue file, then explore the codebase to answer what can be answered without asking:
+- Existing models, schemas, factories/fixtures, tests related to this issue
+- Project conventions file (`CLAUDE.md`, `CONTRIBUTING.md`, `README.md`, etc.)
+- Dependency manifest (`Gemfile`, `package.json`, `pubspec.yaml`, `go.mod`, `requirements.txt`, etc.)
 
-### 2. Ask clarifying questions
+If a question can be answered by reading the codebase — read the codebase instead of asking.
+Only ask the user about things that cannot be determined from code.
 
-Work through these systematically:
+### 2. Build the decision tree
 
-#### Problem Understanding
-- What's the core problem being solved?
-- Who are the users affected?
-- Why is this important right now?
-- What's the success metric?
+Map out every decision this issue requires before asking anything. Order them by dependency — a decision that others depend on comes first. Example:
 
-#### Acceptance Criteria
-- Are the success criteria measurable?
-- Are there hidden edge cases?
-- What counts as "done"?
-- What's explicitly out of scope?
-
-#### Technical Constraints
-- Any architectural constraints?
-- Required tech stack / frameworks?
-- Integration points with existing systems?
-- Performance / scale requirements?
-
-#### Edge Cases & Error Handling
-- What happens if input is empty/invalid?
-- How should errors be handled?
-- What about concurrent requests?
-- Offline scenarios? Rate limiting?
-
-#### Dependencies
-- Does this depend on other work?
-- Does anything depend on this?
-- Timeline constraints?
-- Blocker issues?
-
-#### Implementation Approach (optional)
-- Do you have preferences on implementation?
-- Existing patterns in codebase?
-- Testing strategy?
-
-### 3. Iterate until clear
-
-- If answer is vague → ask follow-up
-- If contradictions emerge → resolve them
-- If gaps appear → fill them
-- Continue until you can confidently explain the feature to someone else
-
-### 4. Generate implementation checklist
-
-Create checklist with:
-- **Setup phase** (dependencies, scaffolding)
-- **Core implementation** (main feature logic)
-- **Integration** (connect to other systems)
-- **Testing** (unit, integration, edge cases)
-- **Documentation** (if needed)
-
-Format as:
-```markdown
-## Implementation Checklist
-
-### Setup
-- [ ] Task 1
-- [ ] Task 2
-
-### Core Implementation
-- [ ] Task 1
-- [ ] Task 2
-
-### Integration & Testing
-- [ ] Task 1
-- [ ] Task 2
+```
+state/enum design
+  └── default value
+        └── test fixture/factory defaults
+              └── fixture variants needed for tests
 ```
 
-### 5. Output summary
+### 3. Interview one question at a time
 
-Report:
-- **Clarification summary** (what was unclear, what got clarified)
-- **Final understanding** (2-3 sentence summary of what will be built)
-- **Implementation checklist** (ready to copy into issue)
-- **Next steps** (ready to implement)
+Work down the decision tree one branch at a time:
+- Ask **one question at a time** — never a list
+- Always provide your **recommended answer** with reasoning — the user confirms, adjusts, or overrides
+- When the user answers, resolve dependent decisions that are now unblocked before moving to the next branch
+- If an answer reveals a new gap or contradiction, follow up on it immediately before continuing
 
-## Example
+#### Trigger-based questions — include these when the issue contains the element
 
-**Input:**
-```
-# Add dark mode toggle
+**State / status field (enum, finite set of values)?**
+- What are the valid values and their integer/string representation?
+- What is the default value? Does it match the happy-path creation flow?
+- Which transitions are automatic (system-triggered) vs manual (user/admin action)?
+- Which states are terminal (no further transitions allowed)?
+- Test fixtures/factories: one variant per non-default state — list every state the tests will need
 
-Toggle dark mode in user settings
-```
+**Authentication / session (any auth system)?**
+- Should non-active statuses block access? *(recommend: yes)*
+- What message or response should blocked actors see?
+- Does this overlap with an existing auth mechanism already in place?
 
-**Questions asked:**
-- What's the success metric? (50% users enable it? No errors on toggle?)
-- Where does preference save? (Local storage? User DB?)
-- What colors for dark mode? (Auto-detect system? Manual toggle?)
-- Does dark mode affect all pages? (Just frontend? API responses?)
-- Testing? (Visual regression? A11y checks?)
+**Soft / logical delete?**
+- Does a `deleted` / `archived` / `inactive` state overlap with a soft-delete mechanism, or do they serve different purposes?
+- After logical delete, can the record be restored? By whom?
 
-**Output:**
-```
-## Clarification Summary
-- Dark mode saves to user account (not local storage)
-- Uses system-detect default, user can override
-- Affects all UI, not API
-- Need visual regression tests
+**Association / relationship (foreign key, join table, embedded)?**
+- On parent delete: restrict (block deletion), cascade (delete children), or nullify (clear reference)?
+- Is the relationship nullable or required?
 
-## Final Understanding
-Add dark mode toggle in settings that persists to user account. Defaults to system preference, survives page reload. All UI components theme-aware.
+**Validation / constraint?**
+- At which layer: data store, domain/model, API/controller, or UI? *(recommend: data store + domain as safety net, UI for UX)*
+- What is the error response when validation fails?
 
-## Implementation Checklist
+**CRUD / resource actions present?**
 
-### Setup
-- [ ] Add dark_mode column to users table
-- [ ] Create theme service/hook
+For **every action**, systematically ask:
 
-### Core Implementation
-- [ ] Add toggle in settings page
-- [ ] Implement theme switching logic
-- [ ] Update all UI components with theme styles
-- [ ] Save preference to database
+- **List / Index:**
+  - Is the list scoped to the current actor (own records only) or global (all records)?
+  - Is filtering, search, or sorting required? If so, which fields?
+  - Is pagination required? What is the default page size?
 
-### Integration & Testing
-- [ ] Test persistence across sessions
-- [ ] Visual regression tests (light/dark)
-- [ ] Test system preference detection
-- [ ] Mobile responsiveness
-```
+- **Read / Show:**
+  - Can any authenticated actor view any record, or only records they own / are related to?
+
+- **Create:**
+  - Who is allowed to create (any authenticated actor, specific role, system only)?
+  - Are there uniqueness rules beyond a data-store index?
+  - What is the initial state of the new record?
+
+- **Update:**
+  - Can an actor update their own record? Can they update others' records?
+  - Are any fields immutable after creation (e.g. identifier, email after verification)?
+  - If a credential/secret field (password, token) is left blank on update, should it be cleared or ignored? *(recommend: ignore blank)*
+
+- **Delete / Remove:**
+  - Is delete hard (row removed), logical (status/flag change), or soft (timestamp set)?
+  - Can an actor delete their own record / act on themselves? *(recommend: block self-delete — treat it as a distinct flow with confirmation, sign-out, notification)*
+  - Can a lower-privilege actor delete a higher-privilege one?
+  - What happens to associated/child records on delete (cascade, restrict, nullify)?
+
+- **Per-action actor restrictions:**
+  - For each mutation action, explicitly ask: "Is there any actor who should be blocked even though they pass the basic auth check?"
+
+**Actor acting on their own record?**
+- For every action that targets a resource by ID, ask: what happens when that ID resolves to the current actor's own record?
+- Flag any action where self-targeting produces unexpected, dangerous, or nonsensical behavior.
+
+### 4. Detect and resolve contradictions
+
+Watch for these automatically:
+- Data-store default ≠ fixture/factory default with no documented reason
+- State values inconsistent with project convention
+- Validation at domain layer but no data-store constraint (or vice versa)
+- State transitions in the spec that don't match the stated business rules
+- Delete behavior (hard/logical/soft) inconsistent with existing state field or soft-delete mechanism
+
+Surface contradictions directly: *"X says A but Y implies B — which is correct?"* — then ask the single most important one first.
+
+### 5. Write decisions back to the issue file
+
+After all questions are resolved, update the issue file:
+- **Key decisions** — every decision made, with its rationale
+- **Flow diagram** — ASCII state transitions or request/action flow matching confirmed behaviour
+- **Snippets** — fixture/factory variants skeleton updated with all confirmed states
+- **Notes** — gotchas, deferred decisions, dependency gaps
+
+Do not change Status, Metadata, or GitHub Issue number.
+
+### 6. Output summary
+
+- **Decisions made** — bullet list
+- **Sections updated in the issue file**
+- **Next step** — ready to implement, or flag if another round is needed
 
 ## Rules
 
-- **Don't read between the lines** - Ask if unclear
-- **Don't assume tech stack** - Confirm with user
-- **Don't skip edge cases** - Systematic questioning catches them
-- **Don't write code yet** - Just clarify & document
-- **Be conversational** - Ask like a colleague, not a checklist
-
-## Tips
-
-- Start broad (problem understanding), then narrow (edge cases)
-- Listen for "I think..." or "probably..." → those need clarification
-- Watch for contradictions between criteria
-- Checklist should be implementation-ready (not too high-level, not too low-level)
-- If user is a domain expert, trust their judgment; if unsure, ask more questions
+- One question at a time — always
+- Always recommend an answer — never ask cold
+- Explore the codebase before asking — don't ask what the code already answers
+- Write decisions back to the issue file — the chat is not the output
+- Flag contradictions directly and resolve them before moving on

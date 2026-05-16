@@ -135,4 +135,8 @@ if command -v eza &>/dev/null; then
     alias lt="eza --tree --level=2 --icons"
 fi
 
+# Utils
 alias ip="ipconfig getifaddr en0"
+
+# Dev
+alias rnew="ruby ~/Dev/personal/rails-starter/bin/new"
