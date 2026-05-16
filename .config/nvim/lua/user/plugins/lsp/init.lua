@@ -41,7 +41,7 @@ return {
 
 			-- attach servers
 			local servers = {
-				-- "solargraph",
+				"ruby_lsp",
 				"bashls",
 				"cssls",
 				"emmet_ls",
@@ -50,7 +50,6 @@ return {
 				"lua_ls",
 				"phpactor",
 				"pyright",
-				"ruby_lsp",
 				"sourcekit",
 				"tailwindcss",
 				"ts_ls",

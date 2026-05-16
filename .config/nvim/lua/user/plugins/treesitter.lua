@@ -8,7 +8,24 @@ return {
 		},
 		config = function()
 			require("nvim-treesitter").setup({
-        ensure_installed = { "markdown", "markdown_inline" },
+        ensure_installed = {
+						"bash",
+						"css",
+						"dart",
+						"embedded_template",
+						"html",
+						"javascript",
+						"json",
+						"lua",
+						"markdown",
+						"markdown_inline",
+						"ruby",
+						"typescript",
+						"tsx",
+						"vim",
+						"vimdoc",
+						"yaml",
+					},
 				textobjects = {
 					select = {
 						enable = true,
