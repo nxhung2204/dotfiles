@@ -7,7 +7,7 @@ if wezterm.config_builder then
 end
 
 -- Appearance
-config.color_scheme = "GruvboxDark"
+config.color_scheme = "Catppuccin Mocha"
 config.window_decorations = "RESIZE | TITLE"
 
 config.window_background_opacity = 1
